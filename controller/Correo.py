@@ -17,7 +17,7 @@ from email.mime.text import MIMEText
 msg = MIMEMultipart()
 
 # En los destinatarios se separa el array por comas y se deja en lista
-# '<Correo1@emergiacc.com>','<Correo2@emergiacc.com>'
+# '<Correo1@gmail.com>','<Correo2@gmail.com>'
 
 # Endregion Instancia de las clases y generación de var globales
 

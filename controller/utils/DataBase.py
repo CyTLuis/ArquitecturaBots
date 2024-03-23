@@ -10,10 +10,7 @@ from controller.utils.Configurations import Configurations
 # Region - Instancia de clases o elementos usados
 logger = Log()
 helper = Helpers()
-configurations = Configurations()
-keyFrt: str = "iBqlFRACiHatsCuRXJ9F-7euK73h5VLcnlTPtupd-G0="
-# Obtención del path absoluta del proyecto
-relativePath = getcwd()
+config = Configurations()
 # Endregion - Instancia de clases o elementos usados
 
 class DataBaseRPA:
@@ -39,10 +36,10 @@ class DataBaseRPA:
                 clase Helper para obtener el valor, y luego desencryptar la información.
         """
         self.datosCrypto = {}
-        self.datosCrypto.update({'server': helper.desEncriptarData(keyFrt, bytes(configurations.getConfigValue("datosconexion", "server"), 'utf-8'))})
-        self.datosCrypto.update({'bdName': helper.desEncriptarData(keyFrt, bytes(configurations.getConfigValue("datosconexion", "bdName"), 'utf-8'))})
-        self.datosCrypto.update({'username': helper.desEncriptarData(keyFrt, bytes(configurations.getConfigValue("datosconexion", "username"), 'utf-8'))})
-        self.datosCrypto.update({'password': helper.desEncriptarData(keyFrt, bytes(configurations.getConfigValue("datosconexion", "password"), 'utf-8'))})
+        self.datosCrypto.update({'server': helper.desEncriptarData(config.getConfigValue("datosconexion", "server"))})
+        self.datosCrypto.update({'bdName': helper.desEncriptarData(config.getConfigValue("datosconexion", "bdName"))})
+        self.datosCrypto.update({'username': helper.desEncriptarData(config.getConfigValue("datosconexion", "username"))})
+        self.datosCrypto.update({'password': helper.desEncriptarData(config.getConfigValue("datosconexion", "password"))})
         self.__conn = ""
     
     def crearConexion(self):

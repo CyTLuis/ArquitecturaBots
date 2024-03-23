@@ -24,8 +24,7 @@ class Configurations:
         self.__file = "config.ini"
     
     # Region - Metodos usados en la clase
-    
-    def getConfigValue(self, section, key):
+    def getConfigValue(self, section: str, key: str):
         """
             Metodo encargado de obtener el valor de un
             elemento de las secciones del `config.ini`

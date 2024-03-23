@@ -58,6 +58,21 @@ class Impresor:
         data+= "============================================================================================================================\n"
         print(data)
     
+    def imprimirComentario(self, proceso: str, comentario: str):
+        """
+            Metodo usado para imprimir la tarea o función
+            que se esta ejecutando en el proceso.
+        `Args:`
+            `proceso (str):` Nombre de la función del llamado
+            `comentario (str):` Comentario que se desea imprimir
+        """
+        self.settiempoActual((datetime.today()).strftime('%Y-%m-%d %H:%M:%S'))
+        data = "|==========================================================================================================================|\n"
+        data+= f"| Tarea: [{proceso}] <==> {comentario}|\n"
+        data+= f"| Hora de ejecución: ({self.gettiempoActual()}) |\n"
+        data+= "|==========================================================================================================================|\n"
+        print(data)
+    
     def imprimirFinal(self):
         """
             Metodo usado para imprimir la hora

@@ -40,7 +40,7 @@ Comando base para conversión a ejectutable:
 Banderas de comando para ejecutable:
 
 * **--onefile** Crea el ejecutable en un solo archivo comprimido que lleva el nombre del archivo main pasado, con extensión .exe
-* **--windowed** Habilita una ventana de CMD durante la ejecución del programa la cual puede servir como depurador de los print dejados en los archivos **".py"**
+* **--windowed** Dehabilita las ventanas de CMD durante la ejecución del programa.
 
 Cabe resaltar que se debe tener instalada la libreria **Pyinstaller** antes de realizar este paso. **(pip install pyinstaller)**
 

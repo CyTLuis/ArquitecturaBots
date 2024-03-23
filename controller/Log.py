@@ -91,30 +91,30 @@ class Log:
         file.write(log + "\n") 
         file.close()
         
-    def registrarLogProceso(self, nameProcess):
+    def registrarLogProceso(self, nombreDeProceso):
         """
             Metodo que escribirá dentro del log de procesos, el 
             nombre del proceso que se esta ejecutando.
             - `Args:`
-                - nameProcess (str): Nombre del proceso en ejecución
+                - nombreDeProceso (str): Nombre del proceso en ejecución
         """
         self.settiempoActual((datetime.today() - timedelta(hours = 0)).strftime('%Y-%m-%d %H:%M:%S'))
-        Messagelog = f"| Ejecutando la tarea == ['{nameProcess}'] <--> Hora de ejecución: {str(self.gettiempoActual())}"
+        proceso = f"| Ejecutando la tarea == ['{nombreDeProceso}'] <--> Hora de ejecución: {str(self.gettiempoActual())}"
         file = open(self.__pathLogProcesos,"a")
-        file.write(Messagelog + "\n") 
+        file.write(proceso + "\n") 
         file.close()
     
-    def registroSubtitulo(self, messageTitle):
+    def registroSubtitulo(self, subtitulo):
         """
             Metodo que escribirá dentro del log de procesos, 
             un titulo referente a la ejecución del proceso, puede
             servir como flag o checkpoint del proceso. 
             - `Args:`
-                - messageTitle (str): Titulo a registrar dentro del log
+                - subtitulo (str): Titulo a registrar dentro del log
         """
         self.settiempoActual((datetime.today() - timedelta(hours = 0)).strftime('%Y-%m-%d %H:%M:%S'))
         log = "============================================================================================================================\n"
-        log+= f"| {messageTitle}  - {str(self.gettiempoActual())} |\n"
+        log+= f"| {subtitulo}  - {str(self.gettiempoActual())} |\n"
         log+= "============================================================================================================================\n"
         file = open(self.__pathLogProcesos, "a")
         file.write(log + "\n") 
@@ -145,7 +145,7 @@ class Log:
         file.write(log + "\n") 
         file.close()
     
-    def registrarLogEror(self, error, procesoActual):
+    def registrarLogEror(self, error: str, procesoActual: str):
         """
             Metodo que escribirá dentro del log de errores, 
             el error que se genero y se dio manejo en el proceso,
@@ -158,7 +158,7 @@ class Log:
         self.settiempoActual((datetime.today() - timedelta(hours = 0)).strftime('%Y-%m-%d %H:%M:%S'))
         log = "============================================================================================================================\n"
         log+= f"| Se ha encontrado un error || Hora detectada: {str(self.gettiempoActual())} |\n"
-        log+= f"| Ultimo estado (Tarea) --> {procesoActual} |\n"
+        log+= f"| Ultimo estado (Tarea o Metodo) --> {procesoActual} |\n"
         log+= f"| ERROR: --> {str(error)} |\n"
         log+= "============================================================================================================================\n"
         file = open(self.__pathLogErrores, "a")

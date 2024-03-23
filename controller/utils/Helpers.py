@@ -9,6 +9,9 @@ from cryptography.fernet import Fernet
 relativePath = os.getcwd()
 # Obtención del user name de la maquina de ejecución
 usuarioMaquinaActual = os.getlogin()
+# Data para encrypt data.
+KEYENCRYPT = "iBqlFRACiHatsCuRXJ9F-7euK73h5VLcnlTPtupd-G0="
+f = Fernet(KEYENCRYPT)
 # Endregion - Instanciar Objetos y variables Globales
 
 class Helpers:
@@ -28,41 +31,9 @@ class Helpers:
     
     # Constructor de la clase
     def __init__(self):
-        self.__initial_count = 0
+        """ Constructor de la clase """
     
-    # Region Metodos usados en la clases
-    
-    def countRecordsDataframe(self, registrosContar):
-        """
-            Metodo para contar la cantidad de registros
-            dentro de un DataFrame, devolviendo así solo
-            los registros de filas con información.
-        - `Args:`
-            - registrosContar (Pandas DF): DataFrame con la información a contar
-        - `Returns:`
-            - str: Cantidad de registros del dataframe
-        """
-        aloneRows = registrosContar.split(",")
-        total = str(aloneRows[0]).replace("(", "")
-        return total
-    
-    # Cuenta el total de carpetas dentro de un directorio
-    def countFolder(self, ruta):
-        """
-            Toma un directorio de un path completo, retorna la cantidad
-            total de directorios encontrados dentro de la ruta dada.
-            - `Args:`
-                - ruta (str): Ruta del directorio raíz
-            - `Returns:`
-                total (int): Cantidad de subdirectorios
-        """
-        self.__initial_count = 0
-        for path in Path(ruta).iterdir():
-            if path.is_dir():
-                self.__initial_count += 1
-                
-        return self.__initial_count
-    
+    # Region Metodos usados en la clases        
     def countFilesExtension(self, path, extension):
         """
             Este metodo contará los archivos dentro de una carpeta
@@ -77,33 +48,28 @@ class Helpers:
         cantidadArchivos = len(glob.glob1(path, f"{extension}"))
         return cantidadArchivos
 
-    def encriptarData(self, key: str, valor: str):
+    def encriptarData(self, valor: str):
         """
             Se encrypta un dato dado, en tipo str para
             hacer su encryptación a través de la llave
             recibida en el llamado del metodo
         - `Args:`
-            - key (str): Llave de ecryptación del Value
             - valor (str): Valor del metodo a encryptar
         - `Returns:`
             - str: Valor encryptado
         """
-        f = Fernet(key)
-        token = f.encrypt(str.encode(valor))   
+        token = f.encrypt(str.encode(valor)).decode("utf-8")
         return token
-    
-    def desEncriptarData(self, key, valor):
+        
+    def desEncriptarData(self, valor: str):
         """
-        Toma la llave de encriptación, y el
-        valor a desencriptar, y retorna el valor
-        en formato str.
-        - `Args:`
-            - key (str): Llave de encriptación
-            - valor (str): Valor a desencriptar
-        - `Returns:`
-            - texto (str): Valor desencriptado en UTF8
+            Toma el valor a desencriptar, y retorna el str
+            en formato str.
+            - `Args:`
+                - valor (str): Valor a desencriptar
+            - `Returns:`
+                - texto (str): Valor desencriptado en UTF8
         """
-        f = Fernet(key)
         texto = f.decrypt(valor)
         return texto.decode("utf-8")
     

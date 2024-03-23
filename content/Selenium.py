@@ -23,8 +23,6 @@ class Selenium:
         ### Aspectos a considerar:
         - Esta clase solo retorna el `driver`, no los metodos de Selenium.
         - Para usar metodos de Selenium, se instancia en la clase que lo llame.
-        - Existen dos formas de instanciar el Driver, la forma uno es usada
-        en la `versión 4.10 de Selenium`, y la forma 2, en versiones anteriores.
         ### Nota:
         - En desarrollos completamente nuevos, se deberá descomprimir el GeckoDriver
         que se encuentra en la ruta `plugins\gecko`
@@ -38,10 +36,7 @@ class Selenium:
                 para la automatización web
             - Usaremos el argumento `"--disable-blink-features=AutomationControlled"`
                 para prevenir la detección del bot como automatización
-        """        
-        # DESCOMENTAR LAS SIGUIENTES LINEAS SEGÚN LA NECESIDAD DEL REQUERIMIENTO
-        
-        # Forma 1: Iniciar las variables del Driver, funcional con Selenium v4.10
+        """ 
         self.opcionesDriver = Options() # Se inicializan las opciones del driver para Firefox
         self.opcionesDriver.add_argument('--disable-blink-features = AutomationControlled')
         self.servicePath = Service(getcwd() + configurations.getConfigValue("drivers", "GeckoDriver")) # Se inicializa el servicio en la ruta del GeckoDriver        
